@@ -1,0 +1,21 @@
+{
+  "name": "org.zechariahs.adventofcode",
+  "version": "0.0.1",
+  "description": "Advent of Code Solutions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zechariahs/AdventOfCode.git"
+  },
+  "author": "Zack Schwenk",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zechariahs/AdventOfCode/issues"
+  },
+  "homepage": "https://github.com/zechariahs/AdventOfCode#readme",
+  "devDependencies": {},
+  "keywords": []
+}

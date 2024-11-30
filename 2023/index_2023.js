@@ -1,3 +1,3 @@
-const {calculate, solve} = require('./day1');
+const Day2 = require('./day2');
 
-solve();
+Day2.solve();

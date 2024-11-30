@@ -1,5 +1,5 @@
 const {calculate, solve} = require('../2023/day1');
-const Day2 = require('../2023/day2');
+const Day1a = require('../2023/day1a');
 var assert = require ('assert');
 
 
@@ -10,7 +10,7 @@ const testData = [
     "treb7uchet"
 ];
 
-const testDataDay2 = [
+const testDataDay1a = [
     "two1nine",
     "eightwothree",
     "abcone2threexyz",
@@ -21,7 +21,7 @@ const testDataDay2 = [
 ]
 
 describe('Unit Tests for 2023', () => {
-    describe("Unit Tests for Day 1", () => {
+    describe("Unit Tests for Day 1, Part 1", () => {
         describe('#calculate()', () => {
             it("should match the Day 1 sample result", () => {
                 assert.equal(calculate(testData), 142);
@@ -33,7 +33,7 @@ describe('Unit Tests for 2023', () => {
             });
         });
     }),
-    describe("Unit Tests for Day 2", () => {
+    describe("Unit Tests for Day 1, Part 2", () => {
         describe('#translate()', () => {
             it("should translate one to 1, two to 2, etc.", () => {
                 var translated = [
@@ -46,20 +46,20 @@ describe('Unit Tests for 2023', () => {
                     "7pqrst6teen"
                 ];
                 
-                var temp = Day2.translate(testDataDay2);
+                var temp = Day1a.translate(testDataDay1a);
 
                 assert.deepEqual(temp, translated);
             })
         }),
         describe('#calculate()', () => {
-            it("should match the Day 2 sample result", () => {
+            it("should match the Day 1, Part 2 sample result", () => {
                 
-                assert.equal(Day2.calculate(testDataDay2), 281);
+                assert.equal(Day1a.calculate(testDataDay1a), 281);
             });
         }),
         describe('#solve()', () => {
             it("should match my real result", async () => {
-                assert.equal(await Day2.solve(), 54770)
+                assert.equal(await Day1a.solve(), 54770)
             });
         });
     });

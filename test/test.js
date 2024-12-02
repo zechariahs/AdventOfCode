@@ -88,6 +88,18 @@ describe("Unit Tests for 2024", () => {
 
             });
         });
+    }),
+    describe("#calculateSimilarityScore(real)", () => {
+        it("should use real data to calculate a result of 11.", async () => {
+
+            await mmxxiv.readData("2024/data/d1p1.txt").then((lstInputData) => {
+
+                var lstLoadedData = mmxxiv.loadData(lstInputData);
+                var intActualResult = mmxxiv.calculateSimilarityScore(lstLoadedData);
+                assert.equal(intActualResult, -18650129);
+
+            });
+        });
     })
 
 });

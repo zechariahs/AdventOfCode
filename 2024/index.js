@@ -87,4 +87,37 @@ function calculate(lstInputData) {
 
 }
 
-module.exports = {calculate, loadData, parseLine, readData};
+function calculateSimilarityScore(lstInputData) {
+
+    var lstLHS = lstInputData[0];
+    var lstRHS = lstInputData[1];
+
+    lstLHS = Object.values(lstLHS);
+    lstRHS = Object.values(lstRHS);
+
+    lstLHS = lstLHS.sort((a, b) => a - b);
+    lstRHS = lstRHS.sort((a, b) => a - b);
+
+    var intScore = 0;
+
+    lstLHS.forEach((lhsElement, lhsIdx) => {
+
+        var intCount = 0;
+
+        lstRHS.forEach((rhsElement, rhsIdx) => {
+
+            if(lhsElement == rhsElement) {
+                intCount++;
+            }
+
+        });
+
+        intScore += (lhsElement * intCount);
+
+    });
+
+    return intScore;
+
+}
+
+module.exports = {calculate, calculateSimilarityScore, loadData, parseLine, readData};

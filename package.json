@@ -6,7 +6,7 @@
   "scripts": {
     "2023": "node 2023/index_2023.js",
     "start": "node index.js",
-    "2023-test": "mocha"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",

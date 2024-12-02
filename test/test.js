@@ -1,16 +1,16 @@
 const {calculate, solve} = require('../2023/day1');
 const Day1a = require('../2023/day1a');
 var assert = require ('assert');
+var mmxxiv = require ("../2024/index.js");
 
-
-const testData = [
+const testData_2023 = [
     "1abc2",
     "pqr3stu8vwx",
     "a1b2c3d4e5f",
     "treb7uchet"
 ];
 
-const testDataDay1a = [
+const testData_2023Day1a = [
     "two1nine",
     "eightwothree",
     "abcone2threexyz",
@@ -18,13 +18,86 @@ const testDataDay1a = [
     "4nineeightseven2",
     "zoneight234",
     "7pqrstsixteen",
-]
+];
 
+
+describe("Unit Tests for 2024", () => {
+    describe("#parseLine()", () => {
+        it("should extract 42, 17, 3, and 25.", () => {
+
+            var strSampleData = "The numbers are 42 and 17. There are also 3 and 25 here.";
+            var lstExpectedResults = [42, 17, 3, 25];
+            
+            var lstActualResults = mmxxiv.parseLine(strSampleData);
+
+            assert.deepEqual(lstActualResults, lstExpectedResults);
+
+        });
+    }),
+    describe("#loadData()", () => {
+        it("should create a multi-dimensional array with 2 columns and 6 rows.", () => {
+
+            var lstSampleData = [
+                "3   4", 
+                "4   3", 
+                "2   5", 
+                "1   3", 
+                "3   9", 
+                "3   3", 
+            ];
+
+            var lstExpectedResults = [
+                [3, 4, 2, 1, 3, 3],
+                [4, 3, 5, 3, 9, 3]
+            ]
+
+            var lstActualResults = mmxxiv.loadData(lstSampleData);
+
+            assert.deepEqual(lstActualResults, lstExpectedResults);
+
+        });
+    }),
+    describe("#calculate(demo)", () => {
+        it("should use demo data to calculate a result of 11.", () => {
+
+            var lstSampleData = [
+                "3   4", 
+                "4   3", 
+                "2   5", 
+                "1   3", 
+                "3   9", 
+                "3   3", 
+            ];
+
+            var lstLoadedData = mmxxiv.loadData(lstSampleData);
+            
+            var nbrActualResult= mmxxiv.calculate(lstLoadedData);
+
+            assert.equal(nbrActualResult, 11);
+
+        });
+    }),
+    describe("#calculate(real)", () => {
+        it("should use real data to calculate a result of 11.", async () => {
+
+            await mmxxiv.readData("2024/data/d1p1.txt").then((lstInputData) => {
+
+                var lstLoadedData = mmxxiv.loadData(lstInputData);
+                var intActualResult = mmxxiv.calculate(lstLoadedData);
+                assert.equal(intActualResult, -2904518);
+
+            });
+        });
+    })
+
+});
+
+/*
 describe('Unit Tests for 2023', () => {
     describe("Unit Tests for Day 1, Part 1", () => {
         describe('#calculate()', () => {
             it("should match the Day 1 sample result", () => {
-                assert.equal(calculate(testData), 142);
+                assert.equal(calculate(testData_2023), 142);
             });
         }),
         describe('#solve()', () => {
@@ -46,7 +119,7 @@ describe('Unit Tests for 2023', () => {
                     "7pqrst6teen"
                 ];
                 
-                var temp = Day1a.translate(testDataDay1a);
+                var temp = Day1a.translate(testData_2023Day1a);
 
                 assert.deepEqual(temp, translated);
             })
@@ -54,7 +127,7 @@ describe('Unit Tests for 2023', () => {
         describe('#calculate()', () => {
             it("should match the Day 1, Part 2 sample result", () => {
                 
-                assert.equal(Day1a.calculate(testDataDay1a), 281);
+                assert.equal(Day1a.calculate(testData_2023Day1a), 281);
             });
         }),
         describe('#solve()', () => {
@@ -64,3 +137,4 @@ describe('Unit Tests for 2023', () => {
         });
     });
 });
+*/

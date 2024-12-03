@@ -41,11 +41,11 @@ function loadData(lstInputData) {
         
         var lstNumbers = parseLine(line);
 
-        console.log(`${lineIndex} = ${line}`);
+        // console.log(`${lineIndex} = ${line}`);
 
         lstNumbers.forEach((parsedNumber, parsedNumberIndex) => {
 
-            console.log(`\t${parsedNumberIndex} = ${parsedNumber}`);
+            // console.log(`\t${parsedNumberIndex} = ${parsedNumber}`);
 
             if((parsedNumberIndex)%2 == 0) {
                 lstData[0][lineIndex] = Number(parsedNumber);
@@ -59,7 +59,7 @@ function loadData(lstInputData) {
 
     });
 
-    console.log(lstData);
+    // console.log(lstData);
 
     return lstData;
 }

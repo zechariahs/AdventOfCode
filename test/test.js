@@ -1,7 +1,9 @@
+var util = require("../util.js");
 const {calculate, solve} = require('../2023/day1');
 const Day1a = require('../2023/day1a');
 var assert = require ('assert');
 var mmxxiv = require ("../2024/index.js");
+var mmxxivd2 = require("../2024/day2.js");
 
 const testData_2023 = [
     "1abc2",
@@ -22,86 +24,139 @@ const testData_2023Day1a = [
 
 
 describe("Unit Tests for 2024", () => {
-    describe("#parseLine()", () => {
-        it("should extract 42, 17, 3, and 25.", () => {
+    describe("Unit Tests for 2024 - Day One", () => {
+        describe("#parseLine()", () => {
+            it("should extract 42, 17, 3, and 25.", () => {
 
-            var strSampleData = "The numbers are 42 and 17. There are also 3 and 25 here.";
-            var lstExpectedResults = [42, 17, 3, 25];
-            
-            var lstActualResults = mmxxiv.parseLine(strSampleData);
+                var strSampleData = "The numbers are 42 and 17. There are also 3 and 25 here.";
+                var lstExpectedResults = [42, 17, 3, 25];
+                
+                var lstActualResults = mmxxiv.parseLine(strSampleData);
 
-            assert.deepEqual(lstActualResults, lstExpectedResults);
-
-        });
-    }),
-    describe("#loadData()", () => {
-        it("should create a multi-dimensional array with 2 columns and 6 rows.", () => {
-
-            var lstSampleData = [
-                "3   4", 
-                "4   3", 
-                "2   5", 
-                "1   3", 
-                "3   9", 
-                "3   3", 
-            ];
-
-            var lstExpectedResults = [
-                [3, 4, 2, 1, 3, 3],
-                [4, 3, 5, 3, 9, 3]
-            ]
-
-            var lstActualResults = mmxxiv.loadData(lstSampleData);
-
-            assert.deepEqual(lstActualResults, lstExpectedResults);
-
-        });
-    }),
-    describe("#calculate(demo)", () => {
-        it("should use demo data to calculate a result of 11.", () => {
-
-            var lstSampleData = [
-                "3   4", 
-                "4   3", 
-                "2   5", 
-                "1   3", 
-                "3   9", 
-                "3   3", 
-            ];
-
-            var lstLoadedData = mmxxiv.loadData(lstSampleData);
-            
-            var nbrActualResult= mmxxiv.calculate(lstLoadedData);
-
-            assert.equal(nbrActualResult, 11);
-
-        });
-    }),
-    describe("#calculate(real)", () => {
-        it("should use real data to calculate a result of 11.", async () => {
-
-            await mmxxiv.readData("2024/data/d1p1.txt").then((lstInputData) => {
-
-                var lstLoadedData = mmxxiv.loadData(lstInputData);
-                var intActualResult = mmxxiv.calculate(lstLoadedData);
-                assert.equal(intActualResult, -2904518);
+                assert.deepEqual(lstActualResults, lstExpectedResults);
 
             });
-        });
-    }),
-    describe("#calculateSimilarityScore(real)", () => {
-        it("should use real data to calculate a result of 11.", async () => {
+        }),
+        describe("#loadData()", () => {
+            it("should create a multi-dimensional array with 2 columns and 6 rows.", () => {
 
-            await mmxxiv.readData("2024/data/d1p1.txt").then((lstInputData) => {
+                var lstSampleData = [
+                    "3   4", 
+                    "4   3", 
+                    "2   5", 
+                    "1   3", 
+                    "3   9", 
+                    "3   3", 
+                ];
 
-                var lstLoadedData = mmxxiv.loadData(lstInputData);
-                var intActualResult = mmxxiv.calculateSimilarityScore(lstLoadedData);
-                assert.equal(intActualResult, -18650129);
+                var lstExpectedResults = [
+                    [3, 4, 2, 1, 3, 3],
+                    [4, 3, 5, 3, 9, 3]
+                ]
+
+                var lstActualResults = mmxxiv.loadData(lstSampleData);
+
+                assert.deepEqual(lstActualResults, lstExpectedResults);
 
             });
-        });
-    })
+        }),
+        describe("#calculate(demo)", () => {
+            it("should use demo data to calculate a result of 11.", () => {
 
+                var lstSampleData = [
+                    "3   4", 
+                    "4   3", 
+                    "2   5", 
+                    "1   3", 
+                    "3   9", 
+                    "3   3", 
+                ];
+
+                var lstLoadedData = mmxxiv.loadData(lstSampleData);
+                
+                var nbrActualResult= mmxxiv.calculate(lstLoadedData);
+
+                assert.equal(nbrActualResult, 11);
+
+            });
+        }),
+        describe("#calculate(real)", () => {
+            it("should use real data to calculate a result of 2904518.", async () => {
+
+                await mmxxiv.readData("2024/data/d1p1.txt").then((lstInputData) => {
+
+                    var lstLoadedData = mmxxiv.loadData(lstInputData);
+                    var intActualResult = mmxxiv.calculate(lstLoadedData);
+                    assert.equal(intActualResult, 2904518);
+
+                });
+            });
+        }),
+        describe("#calculateSimilarityScore(real)", () => {
+            it("should use real data to calculate a result of 11.", async () => {
+
+                await mmxxiv.readData("2024/data/d1p1.txt").then((lstInputData) => {
+
+                    var lstLoadedData = mmxxiv.loadData(lstInputData);
+                    var intActualResult = mmxxiv.calculateSimilarityScore(lstLoadedData);
+                    assert.equal(Number(intActualResult), 18650129);
+
+                });
+            });
+        })
+    }),
+    describe("Unit Tests for 2024 - Day Two", () => {
+        describe("#parseLine()", () => {
+            it("should extract create an array of numbers.", () => {
+
+                var strSampleData = "7 6 4 2 1";
+                var lstExpectedResults = [7, 6, 4, 2, 1];
+                
+                var lstActualResults = mmxxivd2.parseLine(strSampleData);
+
+                assert.deepEqual(lstActualResults, lstExpectedResults);
+
+            });
+        }),
+        describe("#countOfSafeReports(lstSampleData)", () => {
+            it("should find two safe reports", () => {
+
+                var lstSampleData = [
+                    "7 6 4 2 1",
+                    "1 2 7 8 9",
+                    "9 7 6 2 1",
+                    "1 3 2 4 5",
+                    "8 6 4 4 1",
+                    "1 3 6 7 9"
+                ];
+
+                var lstLoadedData = mmxxivd2.loadData(lstSampleData);
+                
+                var intActualResult = mmxxivd2.countSafeReports(lstLoadedData);
+
+                assert.equal(intActualResult, 2);
+
+            });
+        }),
+        describe("#countOfSafeReports(lstActualData)", () => {
+            it("should find 624 safe reports", async () => {
+
+                await util.readData('2024/data/d2p1.txt').then((lstActualData) => {
+
+                    var lstLoadedData = mmxxivd2.loadData(lstActualData);
+                
+                    var intActualResult = mmxxivd2.countSafeReports(lstLoadedData);
+
+                    assert.equal(intActualResult, 624);
+
+                });
+
+                
+
+            });
+        })
+
+    });
 });
 
 /*

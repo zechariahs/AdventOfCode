@@ -118,8 +118,8 @@ describe("Unit Tests for 2024", () => {
 
             });
         }),
-        describe("#countOfSafeReports(lstSampleData)", () => {
-            it("should find two safe reports", () => {
+        describe("#countOfSafeReports(lstSampleData, false)", () => {
+            it("should find two safe reports with dampener disabled", () => {
 
                 var lstSampleData = [
                     "7 6 4 2 1",
@@ -132,22 +132,61 @@ describe("Unit Tests for 2024", () => {
 
                 var lstLoadedData = mmxxivd2.loadData(lstSampleData);
                 
-                var intActualResult = mmxxivd2.countSafeReports(lstLoadedData);
+                var intActualResult = mmxxivd2.countSafeReports(lstLoadedData, false);
 
                 assert.equal(intActualResult, 2);
 
             });
         }),
-        describe("#countOfSafeReports(lstActualData)", () => {
-            it("should find 624 safe reports", async () => {
+        describe("#countOfSafeReports(lstActualData, false)", () => {
+            it("should find 624 safe reports with dampener disabled", async () => {
 
                 await util.readData('2024/data/d2p1.txt').then((lstActualData) => {
 
                     var lstLoadedData = mmxxivd2.loadData(lstActualData);
                 
-                    var intActualResult = mmxxivd2.countSafeReports(lstLoadedData);
+                    var intActualResult = mmxxivd2.countSafeReports(lstLoadedData, false);
 
                     assert.equal(intActualResult, 624);
+
+                });
+
+                
+
+            });
+        }),
+        describe("#countOfSafeReports(lstSampleData, true)", () => {
+            it("should find 4 safe reports with dampener enabled", async () => {
+
+                var lstSampleData = [
+                    "7 6 4 2 1",
+                    "1 2 7 8 9",
+                    "9 7 6 2 1",
+                    "1 3 2 4 5",
+                    "8 6 4 4 1",
+                    "1 3 6 7 9"
+                ];
+
+                var lstLoadedData = mmxxivd2.loadData(lstSampleData);
+                
+                var intActualResult = mmxxivd2.countSafeReports(lstLoadedData, true);
+
+                assert.equal(intActualResult, 4);
+
+                
+
+            });
+        }),
+        describe("#countOfSafeReports(lstActualData, true)", async () => {
+            it("should find 658 safe reports with dampener enabled", async () => {
+
+                await util.readData('2024/data/d2p1.txt').then((lstActualData) => {
+
+                    var lstLoadedData = mmxxivd2.loadData(lstActualData);
+                
+                    var intActualResult = mmxxivd2.countSafeReports(lstLoadedData, true);
+
+                    assert.equal(intActualResult, 658);
 
                 });
 

@@ -25,7 +25,7 @@ const testData_2023Day1a = [
 
 function getUnitTestsFor2024D3() {
     return describe("Unit Tests for 2024 - Day Three", () => {
-        describe("#identifyMulCommands(strInput)", () => {
+        describe("#identifyMulCommands(strSampleData)", () => {
             it("should find 4 commands", () => {
 
                 var strSampleData = "xmul(2,4)%&mul[3,7]!@^do_not_mul(5,5)+mul(32,64]then(mul(11,8)mul(8,5))";
@@ -36,7 +36,7 @@ function getUnitTestsFor2024D3() {
 
             });
         }),
-        describe("#performMultiplication(strCommand)", () => {
+        describe("#performMultiplication(strSampleData)", () => {
             it("should calculate a sum of 161", () => {
 
                 var strSampleData = "xmul(2,4)%&mul[3,7]!@^do_not_mul(5,5)+mul(32,64]then(mul(11,8)mul(8,5))";
@@ -55,12 +55,55 @@ function getUnitTestsFor2024D3() {
 
             });
         }),
-        describe("#performMultiplication(strCommand)", () => {
+        describe("#calculate(actualData, boolEnabledOnly => false)", () => {
             it("should calculate sum of 185797128", async () => {
 
-                var nbrSum = await mmxxivd3.calculate('2024/data/d3p1.txt')
+                var nbrSum = await mmxxivd3.calculate('2024/data/d3p1.txt', false)
 
                 assert.equal(nbrSum, 185797128);
+
+            });
+        }),
+        describe("#identifyEnabledCommands(strSampleData)", () => {
+            it("should find 2 commands", () => {
+
+                var strSampleData = "xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))";
+                
+                var lstCommands = mmxxivd3.identifyCommands(strSampleData);
+                
+                var lstActualResults = mmxxivd3.identifyEnabledCommands(lstCommands);
+
+                assert.equal(lstActualResults.length, 2);
+
+            });
+        }),
+        describe("#performMultiplication(strSampleData)", () => {
+            it("should calculate a sum of 48", () => {
+
+                var strSampleData = "xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))";
+                
+                var lstCommands = mmxxivd3.identifyCommands(strSampleData);
+                
+                var lstActualResults = mmxxivd3.identifyEnabledCommands(lstCommands);
+
+                var nbrSum = 0;
+
+                lstActualResults.forEach((command) => {
+
+                    nbrSum += mmxxivd3.performMultiplication(command);
+
+                });
+
+                assert.equal(nbrSum, 48);
+
+            });
+        }),
+        describe("#calculate(actualData, boolEnabledOnly => true)", () => {
+            it("should calculate sum of 89798695", async () => {
+
+                var nbrSum = await mmxxivd3.calculate('2024/data/d3p1.txt', true)
+
+                assert.equal(nbrSum, 89798695);
 
             });
         })

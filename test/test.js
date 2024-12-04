@@ -4,6 +4,7 @@ const Day1a = require('../2023/day1a');
 var assert = require ('assert');
 var mmxxiv = require ("../2024/index.js");
 var mmxxivd2 = require("../2024/day2.js");
+var mmxxivd3 = require("../2024/day3.js");
 
 const testData_2023 = [
     "1abc2",
@@ -22,90 +23,52 @@ const testData_2023Day1a = [
     "7pqrstsixteen",
 ];
 
+function getUnitTestsFor2024D3() {
+    return describe("Unit Tests for 2024 - Day Three", () => {
+        describe("#identifyMulCommands(strInput)", () => {
+            it("should find 4 commands", () => {
 
-describe("Unit Tests for 2024", () => {
-    describe("Unit Tests for 2024 - Day One", () => {
-        describe("#parseLine()", () => {
-            it("should extract 42, 17, 3, and 25.", () => {
-
-                var strSampleData = "The numbers are 42 and 17. There are also 3 and 25 here.";
-                var lstExpectedResults = [42, 17, 3, 25];
+                var strSampleData = "xmul(2,4)%&mul[3,7]!@^do_not_mul(5,5)+mul(32,64]then(mul(11,8)mul(8,5))";
                 
-                var lstActualResults = mmxxiv.parseLine(strSampleData);
+                var lstActualResults = mmxxivd3.identifyMulCommands(strSampleData);
 
-                assert.deepEqual(lstActualResults, lstExpectedResults);
-
-            });
-        }),
-        describe("#loadData()", () => {
-            it("should create a multi-dimensional array with 2 columns and 6 rows.", () => {
-
-                var lstSampleData = [
-                    "3   4", 
-                    "4   3", 
-                    "2   5", 
-                    "1   3", 
-                    "3   9", 
-                    "3   3", 
-                ];
-
-                var lstExpectedResults = [
-                    [3, 4, 2, 1, 3, 3],
-                    [4, 3, 5, 3, 9, 3]
-                ]
-
-                var lstActualResults = mmxxiv.loadData(lstSampleData);
-
-                assert.deepEqual(lstActualResults, lstExpectedResults);
+                assert.equal(lstActualResults.length, 4);
 
             });
         }),
-        describe("#calculate(demo)", () => {
-            it("should use demo data to calculate a result of 11.", () => {
+        describe("#performMultiplication(strCommand)", () => {
+            it("should calculate a sum of 161", () => {
 
-                var lstSampleData = [
-                    "3   4", 
-                    "4   3", 
-                    "2   5", 
-                    "1   3", 
-                    "3   9", 
-                    "3   3", 
-                ];
-
-                var lstLoadedData = mmxxiv.loadData(lstSampleData);
+                var strSampleData = "xmul(2,4)%&mul[3,7]!@^do_not_mul(5,5)+mul(32,64]then(mul(11,8)mul(8,5))";
                 
-                var nbrActualResult= mmxxiv.calculate(lstLoadedData);
+                var lstActualResults = mmxxivd3.identifyMulCommands(strSampleData);
 
-                assert.equal(nbrActualResult, 11);
+                var nbrSum = 0;
 
-            });
-        }),
-        describe("#calculate(real)", () => {
-            it("should use real data to calculate a result of 2904518.", async () => {
+                lstActualResults.forEach((command) => {
 
-                await mmxxiv.readData("2024/data/d1p1.txt").then((lstInputData) => {
-
-                    var lstLoadedData = mmxxiv.loadData(lstInputData);
-                    var intActualResult = mmxxiv.calculate(lstLoadedData);
-                    assert.equal(intActualResult, 2904518);
+                    nbrSum += mmxxivd3.performMultiplication(command);
 
                 });
+
+                assert.equal(nbrSum, 161);
+
             });
         }),
-        describe("#calculateSimilarityScore(real)", () => {
-            it("should use real data to calculate a result of 11.", async () => {
+        describe("#performMultiplication(strCommand)", () => {
+            it("should calculate sum of 185797128", async () => {
 
-                await mmxxiv.readData("2024/data/d1p1.txt").then((lstInputData) => {
+                var nbrSum = await mmxxivd3.calculate('2024/data/d3p1.txt')
 
-                    var lstLoadedData = mmxxiv.loadData(lstInputData);
-                    var intActualResult = mmxxiv.calculateSimilarityScore(lstLoadedData);
-                    assert.equal(Number(intActualResult), 18650129);
+                assert.equal(nbrSum, 185797128);
 
-                });
             });
         })
-    }),
-    describe("Unit Tests for 2024 - Day Two", () => {
+    });
+}
+
+function getUnitTestsFor2024D2() {
+    return describe("Unit Tests for 2024 - Day Two", () => {
         describe("#parseLine()", () => {
             it("should extract create an array of numbers.", () => {
 
@@ -196,6 +159,96 @@ describe("Unit Tests for 2024", () => {
         })
 
     });
+}
+
+function getUnitTestsFor2024D1() {
+    describe("Unit Tests for 2024 - Day One", () => {
+        describe("#parseLine()", () => {
+            it("should extract 42, 17, 3, and 25.", () => {
+
+                var strSampleData = "The numbers are 42 and 17. There are also 3 and 25 here.";
+                var lstExpectedResults = [42, 17, 3, 25];
+                
+                var lstActualResults = mmxxiv.parseLine(strSampleData);
+
+                assert.deepEqual(lstActualResults, lstExpectedResults);
+
+            });
+        }),
+        describe("#loadData()", () => {
+            it("should create a multi-dimensional array with 2 columns and 6 rows.", () => {
+
+                var lstSampleData = [
+                    "3   4", 
+                    "4   3", 
+                    "2   5", 
+                    "1   3", 
+                    "3   9", 
+                    "3   3", 
+                ];
+
+                var lstExpectedResults = [
+                    [3, 4, 2, 1, 3, 3],
+                    [4, 3, 5, 3, 9, 3]
+                ]
+
+                var lstActualResults = mmxxiv.loadData(lstSampleData);
+
+                assert.deepEqual(lstActualResults, lstExpectedResults);
+
+            });
+        }),
+        describe("#calculate(demo)", () => {
+            it("should use demo data to calculate a result of 11.", () => {
+
+                var lstSampleData = [
+                    "3   4", 
+                    "4   3", 
+                    "2   5", 
+                    "1   3", 
+                    "3   9", 
+                    "3   3", 
+                ];
+
+                var lstLoadedData = mmxxiv.loadData(lstSampleData);
+                
+                var nbrActualResult= mmxxiv.calculate(lstLoadedData);
+
+                assert.equal(nbrActualResult, 11);
+
+            });
+        }),
+        describe("#calculate(real)", () => {
+            it("should use real data to calculate a result of 2904518.", async () => {
+
+                await mmxxiv.readData("2024/data/d1p1.txt").then((lstInputData) => {
+
+                    var lstLoadedData = mmxxiv.loadData(lstInputData);
+                    var intActualResult = mmxxiv.calculate(lstLoadedData);
+                    assert.equal(intActualResult, 2904518);
+
+                });
+            });
+        }),
+        describe("#calculateSimilarityScore(real)", () => {
+            it("should use real data to calculate a result of 11.", async () => {
+
+                await mmxxiv.readData("2024/data/d1p1.txt").then((lstInputData) => {
+
+                    var lstLoadedData = mmxxiv.loadData(lstInputData);
+                    var intActualResult = mmxxiv.calculateSimilarityScore(lstLoadedData);
+                    assert.equal(Number(intActualResult), 18650129);
+
+                });
+            });
+        })
+    });
+}
+
+describe("Unit Tests for 2024", () => {
+    getUnitTestsFor2024D1(),
+    getUnitTestsFor2024D2(),
+    getUnitTestsFor2024D3()
 });
 
 /*

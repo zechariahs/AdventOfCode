@@ -101,7 +101,7 @@ function isReportSafe(lstCurrReport, problemDampenerEnabled) {
 
     if(!boolSafe && problemDampenerEnabled) {
 
-        console.log(`${lstCurrReport} is unsafe; dampening...`)
+        // console.log(`${lstCurrReport} is unsafe; dampening...`)
         return dampener(lstCurrReport, 0, 0);
 
     }

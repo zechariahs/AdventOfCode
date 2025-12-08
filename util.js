@@ -35,4 +35,45 @@ function readData(strFilename) {
     });
 }
 
+/**
+ * Creates a multi-dimensional array based on the input.
+ * 
+ * @param {List} lstInputData 
+ * @param {Number} intBlockSize
+ * @returns {List} A multi-dimensional array
+ */
+function loadData(lstInputData, intBlockSize = 1) {
+    
+    var lstData = [[],[]]
+    
+    lstInputData.forEach((line, lineIndex) => {
+        
+        Array.from(line);
+        
+        
+        var lstNumbers = parseLine(line);
+
+        // console.log(`${lineIndex} = ${line}`);
+
+        lstNumbers.forEach((parsedNumber, parsedNumberIndex) => {
+
+            // console.log(`\t${parsedNumberIndex} = ${parsedNumber}`);
+
+            if((parsedNumberIndex)%2 == 0) {
+                lstData[0][lineIndex] = Number(parsedNumber);
+            } else {
+                lstData[1][lineIndex] = Number(parsedNumber);
+            }
+
+        })
+        
+        
+
+    });
+
+    // console.log(lstData);
+
+    return lstData;
+}
+
 module.exports = {readData};

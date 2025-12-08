@@ -74,3 +74,5 @@ async function solve() {
     });
 
 }
+
+module.exports = { solve }; 

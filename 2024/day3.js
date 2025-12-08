@@ -15,7 +15,7 @@ function identifyMulCommands(strInput) {
 
 function performMultiplication(strCommand) {
 
-    const regex = /-?\d+(\.\d+)?/g;
+    const regex = /-?\d+(\.\d+)?/g; 
 
     const matches = strCommand.match(regex);
 

@@ -38,16 +38,12 @@ function getUnitTestsFor2025D1() {
             });
         }),
         describe("#processData with actual data using alternate counting method", () => {
-            it("should return more than 1120", async () => {
+            it("should return 6554", async () => {
         
                 await util.readData("2025/data/d1p1.txt").then((lstInputData) => {;
         
                     var intActualResult = mmxxvd1.processData(lstInputData, 50, true);
-                    
-                    // 8805 is too high
-                    // 7260 is not right
-                    // 6836 is not right
-                    assert.equal(intActualResult, 1120);
+                    assert.equal(intActualResult, 6554);
                 });
             });
         });      

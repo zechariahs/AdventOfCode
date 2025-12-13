@@ -6,44 +6,48 @@ let rows = 0;
 
 function rotate(startingPosition, direction, steps, countAll=false) {
 
-    let multiplier = direction === 'R' ? 1 : -1;
-
-    let newPosition = (startingPosition + (steps * multiplier)) % 100;
-
-    if(newPosition < startingPosition && newPosition > 0 && direction === 'R' && countAll) {
-        // crossed 0
-        count++;
-    }   
+    let writeLog = (rows%1000 === 0 || (rows > 99 && rows < 201));
     
+    let multiplier = direction === 'R' ? 1 : -1;
+    let clicks = steps * multiplier;
+    let newPosition = (startingPosition + clicks) % 100;
+
     if (newPosition < 0) {
         newPosition += 100;
-    }
+    }    
+    
     
     if(countAll) {
-        
-        let clicks = (startingPosition + steps);
+        let fullSpins = Math.floor(steps / 100);
+        let partialSpins = steps % 100;
 
-        if(clicks > 100) {
-
-            let spins = Math.floor(clicks / 100);
-            
-            // console.log(`\t\tClicks: ${clicks}, Spins: ${spins}`);
-
-            if (spins >= 1) {
-                count += spins - 1;
-                
-                
-                
-            }
+        if(writeLog) {
+            console.log(`\n\t\t\tClicks: ${clicks}, Spins: ${fullSpins}`);
         }
         
+        if (fullSpins >= 1) {
+            count += fullSpins ;
+        } 
+        if(partialSpins > 0 && newPosition !== countValue) {
+            // No full spins, check partial
+            if(direction === 'R' && startingPosition !== countValue &&newPosition < startingPosition) {
+                count++;
+            } else if(direction === 'L' && startingPosition !== countValue && newPosition > startingPosition) {
+                count++;
+            }
+        }
     }
     
+    
+    
     if (newPosition === countValue) {
+        // Landed on zero.
         count++;
     }
+    
 
-    if (rows%1000 === 0 || (rows > 100 && rows < 200)) {
+
+    if (writeLog) {
         console.log(`\t\t${rows}. ${startingPosition} --> ${direction}${steps} --> ${newPosition} (Count: ${count})`);
     }      
 

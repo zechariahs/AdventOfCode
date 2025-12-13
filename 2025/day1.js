@@ -6,7 +6,7 @@ let rows = 0;
 
 function rotate(startingPosition, direction, steps, countAll=false) {
 
-    let writeLog = (rows%1000 === 0 || (rows > 99 && rows < 201));
+    let writeLog = (1 === 2) &&(rows%1000 === 0 || (rows > 99 && rows < 201));
     
     let multiplier = direction === 'R' ? 1 : -1;
     let clicks = steps * multiplier;

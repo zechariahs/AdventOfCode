@@ -3,7 +3,7 @@ var util = require("../util.js");
 var mmxxvd1 = require ("../2025/day1.js");
 
 function getUnitTestsFor2025D1() {
-    return describe("Day 1, Part 1 of 2", () => {
+    return describe("Day 1, Parts 1 and 2", () => {
 
         describe("#processData with sample data", () => {
             it("should return 3", () => {

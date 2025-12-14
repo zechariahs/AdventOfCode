@@ -1,7 +1,7 @@
 
 # Advent of Code
 
-> Learn more about Advent of Code (AOC) at https://adventofcode.com/. Find support at (r/AdventOfCode)[https://www.reddit.com/r/adventofcode/s/mzBYFFEL8C].
+> Learn more about Advent of Code (AOC) at https://adventofcode.com/. Find support at [r/AdventOfCode](https://www.reddit.com/r/adventofcode/s/mzBYFFEL8C).
 
 ## Structure
 

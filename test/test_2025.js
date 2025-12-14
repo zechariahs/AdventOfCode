@@ -8,6 +8,38 @@ var assert = require ('assert');
 var util = require("../util.js");
 var mmxxvd1 = require ("../2025/day1.js");
 var mmxxvd2 = require ("../2025/day2.js");
+var mmxxvd3 = require ("../2025/day3.js");
+const { get } = require('http');
+
+function getUnitTestsFor2025D3() {
+    return describe("Day 3, Parts 1 and 2", () => {
+        describe("#processData with sample data", () => {
+            it("should return 7", () => {
+        
+                let sampleData = [
+                    "987654321111111",
+                    "811111111111119",
+                    "234234234234278",
+                    "818181911112111"
+                ];
+
+                let joltage = mmxxvd3.processData(sampleData);
+                assert.equal(joltage, 357);
+            });
+        }),
+        describe("#processData with actual data", () => {
+            it("should return 3573", async () => {
+        
+                await util.readData("2025/data/d3p1.txt").then((lstInputData) => {
+        
+                    var intActualResult = mmxxvd3.processData(lstInputData);
+        
+                    assert.equal(intActualResult, 3573);
+                });
+            });
+        });
+    });
+}
 
 /**
  * Gets the unit tests for 2025 Day 2.
@@ -120,4 +152,4 @@ function getUnitTestsFor2025D1() {
     });
 }
 
-module.exports = {getUnitTestsFor2025D1, getUnitTestsFor2025D2};
+module.exports = {getUnitTestsFor2025D1, getUnitTestsFor2025D2, getUnitTestsFor2025D3};

@@ -27,6 +27,30 @@ function getUnitTestsFor2025D2() {
                     assert.equal(intActualResult, 40214376723);
                 });
             });
+        }),
+        describe("#processData with sample data using alternate counting method", () => {
+            it("should return 4174379265", () => {
+        
+                let sampleData = "11-22,95-115,998-1012,1188511880-1188511890,222220-222224,1698522-1698528,446443-446449,38593856-38593862,565653-565659,824824821-824824827,2121212118-2121212124";
+        
+                var intActualResult = mmxxvd2.processData(sampleData, ",", true);
+        
+                assert.equal(intActualResult, 4174379265);
+            });
+        }),
+        describe("#processData with actual data using alternate counting method", () => {
+            it("should return 50793864718", async () => {
+        
+                await util.readData("2025/data/d2p1.txt").then((lstInputData) => {
+        
+                    var strInputData = lstInputData[0];
+        
+                    var intActualResult = mmxxvd2.processData(strInputData, ",", true);
+        
+                    // 10632638764 is too low.
+                    assert.equal(intActualResult, 50793864718);
+                });
+            });
         });
         
         

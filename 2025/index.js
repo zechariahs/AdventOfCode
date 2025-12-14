@@ -1,1 +1,0 @@
-import * from './2025/day1.js'; 

@@ -1,8 +1,18 @@
+/**
+ * Copyright (c) 2025 by Zechariah Schwenk, All Rights Reserved.
+ * Use of this source code is governed by an MIT-style license that
+ * can be found in the LICENSE file at https://opensource.org/licenses/MIT
+ */
+
 var assert = require ('assert');
 var util = require("../util.js");
 var mmxxvd1 = require ("../2025/day1.js");
 var mmxxvd2 = require ("../2025/day2.js");
 
+/**
+ * Gets the unit tests for 2025 Day 2.
+ * @returns 
+ */
 function getUnitTestsFor2025D2() {
     return describe("Day 2, Parts 1 and 2", () => {
         describe("#processData with sample data", () => {
@@ -57,6 +67,10 @@ function getUnitTestsFor2025D2() {
     });
 }
 
+/**
+ * Gets the unit tests for 2025 Day 1.
+ * @returns 
+ */
 function getUnitTestsFor2025D1() {
     return describe("Day 1, Parts 1 and 2", () => {
 

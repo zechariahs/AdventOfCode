@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2024 by Zechariah Schwenk, All Rights Reserved.
+ * Use of this source code is governed by an MIT-style license that
+ * can be found in the LICENSE file at https://opensource.org/licenses/MIT
+ */
 var util = require("../util.js");
 var assert = require ('assert');
 // const Test2024 {getUnitTestsFor2024D1, getUnitTestsFor2024D2, getUnitTestsFor2024D3} = require("../test/test_2024.js");
@@ -10,17 +15,15 @@ describe("Unit Tests for 2025", () => {
 
 
 /*
+
+@TODO: Clean-up and re-enable 2023 and 2024 tests.
+
 describe("Unit Tests for 2024", () => {
     Test2024.getUnitTestsFor2024D1(),
     Test2024.getUnitTestsFor2024D2(),
     Test2024.getUnitTestsFor2024D3()
 });
-*/
 
-
-
-
-/*
 describe('Unit Tests for 2023', () => {
     describe("Unit Tests for Day 1, Part 1", () => {
         describe('#calculate()', () => {

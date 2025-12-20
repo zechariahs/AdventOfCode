@@ -16,11 +16,39 @@ function getUnitTestsFor2025D4() {
     return describe("Day 4, Parts 1 and 2", () => {
         describe("#processData with sample data", () => {
             
-            const numExpectedValue = 2;
+            const numExpectedValue = 13;
             
             it(`should return ${numExpectedValue}`, () => {
-                // stub
-                //assert.equal(validPasswords, numExpectedValue);
+                
+                let lstSampleData = [
+                    "..@@.@@@@.",
+                    "@@@.@.@.@@",
+                    "@@@@@.@.@@",
+                    "@.@@@@..@.",
+                    "@@.@@@@.@@",
+                    ".@@@@@@@.@",
+                    ".@.@.@.@@@",
+                    "@.@@@.@@@@",
+                    ".@@@@@@@@.",
+                    "@.@.@@@.@."];
+
+                    let numTotalRolls = mmxxvd4.processData(lstSampleData, {x:0, y:0}, 3, true);
+                
+                    assert.equal(numTotalRolls, numExpectedValue);
+            });
+        }),
+        describe("#processData with actual data", () => {
+            
+            const numExpectedValue = 1372;
+            
+            it(`should return ${numExpectedValue}`, async () => {
+        
+                await util.readData("2025/data/d4p1.txt").then((lstInputData) => {
+        
+                    let numTotalRolls = mmxxvd4.processData(lstInputData);
+                    
+                    assert.equal(numTotalRolls, numExpectedValue);
+                });
             });
         });
     });

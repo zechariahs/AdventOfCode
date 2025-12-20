@@ -6,7 +6,7 @@
 var util = require("../util.js");
 var assert = require ('assert');
 // const Test2024 {getUnitTestsFor2024D1, getUnitTestsFor2024D2, getUnitTestsFor2024D3} = require("../test/test_2024.js");
-const {getUnitTestsFor2025D1, getUnitTestsFor2025D2, getUnitTestsFor2025D3} = require("../test/test_2025.js");
+const {getUnitTestsFor2025D1, getUnitTestsFor2025D2, getUnitTestsFor2025D3, getUnitTestsFor2025D4} = require("../test/test_2025.js");
 
 describe("Unit Tests for 2025", () => {
     getUnitTestsFor2025D1(), 

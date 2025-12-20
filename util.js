@@ -1,6 +1,38 @@
 const fs = require('fs');
 const readline = require('readline');
 
+function readDataWithTimeout(strFilename, timeoutMs) {
+
+    return new Promise((resolve, reject) => {
+    
+        var lstInputData = [];
+        
+        const fileStream = fs.createReadStream(strFilename);
+        
+        const rl = readline.createInterface({
+        input: fileStream,
+        crlfDelay: Infinity
+        });
+
+        const timeout = setTimeout(() => {
+            rl.close();
+            reject(new Error('File reading timed out'));
+        }, timeoutMs);
+
+        rl.on('line', (line) => {
+            // console.log(`Line from file: ${line}`);
+            lstInputData[lstInputData.length] = line;
+        });
+
+        rl.on('close', () => {
+            clearTimeout(timeout);
+            // console.log('Finished reading the file.');
+            resolve(lstInputData);
+
+        });
+    });
+}
+
 /**
  * 
  * Create an array with data from a file. One element
@@ -76,4 +108,4 @@ function loadData(lstInputData, intBlockSize = 1) {
     return lstData;
 }
 
-module.exports = {readData};
+module.exports = {readData, readDataWithTimeout};

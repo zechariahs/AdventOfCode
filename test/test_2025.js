@@ -32,7 +32,7 @@ function getUnitTestsFor2025D4() {
                     ".@@@@@@@@.",
                     "@.@.@@@.@."];
 
-                    let numTotalRolls = mmxxvd4.processData(lstSampleData, {x:0, y:0}, 3, true);
+                    let numTotalRolls = mmxxvd4.processData(lstSampleData, 1, false);
                 
                     assert.equal(numTotalRolls, numExpectedValue);
             });
@@ -45,7 +45,44 @@ function getUnitTestsFor2025D4() {
         
                 await util.readData("2025/data/d4p1.txt").then((lstInputData) => {
         
-                    let numTotalRolls = mmxxvd4.processData(lstInputData);
+                    let numTotalRolls = mmxxvd4.processData(lstInputData, 1, false);
+                    
+                    assert.equal(numTotalRolls, numExpectedValue);
+                });
+            });
+        }),
+        describe("#processData with sample data using alternate method", () => {
+            
+            const numExpectedValue = 43;
+            
+            it(`should return ${numExpectedValue}`, () => {
+                
+                let lstSampleData = [
+                    "..@@.@@@@.",
+                    "@@@.@.@.@@",
+                    "@@@@@.@.@@",
+                    "@.@@@@..@.",
+                    "@@.@@@@.@@",
+                    ".@@@@@@@.@",
+                    ".@.@.@.@@@",
+                    "@.@@@.@@@@",
+                    ".@@@@@@@@.",
+                    "@.@.@@@.@."];
+
+                    let numTotalRolls = mmxxvd4.processData(lstSampleData, 500, false);
+                
+                    assert.equal(numTotalRolls, numExpectedValue);
+            });
+        }),
+        describe("#processData with actual data using alternate method", () => {
+            
+            const numExpectedValue = 7922;
+            
+            it(`should return ${numExpectedValue}`, async () => {
+        
+                await util.readData("2025/data/d4p1.txt").then((lstInputData) => {
+        
+                    let numTotalRolls = mmxxvd4.processData(lstInputData, 500, false);
                     
                     assert.equal(numTotalRolls, numExpectedValue);
                 });

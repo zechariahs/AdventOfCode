@@ -49,7 +49,7 @@ function getUnitTestsFor2025D3() {
                     "234234234234278",
                     "818181911112111"
                 ];
-                let joltage = mmxxvd3.processData(sampleData, 12, true);
+                let joltage = mmxxvd3.processData(sampleData, 12);
                 assert.equal(joltage, 3121910778619);
             });
         }),

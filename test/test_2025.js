@@ -9,8 +9,22 @@ var util = require("../util.js");
 var mmxxvd1 = require ("../2025/day1.js");
 var mmxxvd2 = require ("../2025/day2.js");
 var mmxxvd3 = require ("../2025/day3.js");
+var mmxxvd4 = require ("../2025/day4.js");
 const { get } = require('http');
 
+function getUnitTestsFor2025D4() {
+    return describe("Day 4, Parts 1 and 2", () => {
+        describe("#processData with sample data", () => {
+            
+            const numExpectedValue = 2;
+            
+            it(`should return ${numExpectedValue}`, () => {
+                // stub
+                //assert.equal(validPasswords, numExpectedValue);
+            });
+        });
+    });
+}
 function getUnitTestsFor2025D3() {
     return describe("Day 3, Parts 1 and 2", () => {
         describe("#processData with sample data", () => {
@@ -178,4 +192,4 @@ function getUnitTestsFor2025D1() {
     });
 }
 
-module.exports = {getUnitTestsFor2025D1, getUnitTestsFor2025D2, getUnitTestsFor2025D3};
+module.exports = {getUnitTestsFor2025D1, getUnitTestsFor2025D2, getUnitTestsFor2025D3, getUnitTestsFor2025D4};

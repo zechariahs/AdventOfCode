@@ -11,7 +11,8 @@ const {getUnitTestsFor2025D1, getUnitTestsFor2025D2, getUnitTestsFor2025D3} = re
 describe("Unit Tests for 2025", () => {
     getUnitTestsFor2025D1(), 
     getUnitTestsFor2025D2(),
-    getUnitTestsFor2025D3();
+    getUnitTestsFor2025D3(),
+    getUnitTestsFor2025D4();
 });
 
 

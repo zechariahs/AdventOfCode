@@ -14,7 +14,7 @@ const { get } = require('http');
 function getUnitTestsFor2025D3() {
     return describe("Day 3, Parts 1 and 2", () => {
         describe("#processData with sample data", () => {
-            it("should return 7", () => {
+            it("should return 357", () => {
         
                 let sampleData = [
                     "987654321111111",
@@ -28,13 +28,39 @@ function getUnitTestsFor2025D3() {
             });
         }),
         describe("#processData with actual data", () => {
-            it("should return 3573", async () => {
+            it("should return 17087", async () => {
         
                 await util.readData("2025/data/d3p1.txt").then((lstInputData) => {
         
-                    var intActualResult = mmxxvd3.processData(lstInputData);
+
+
+                    let intActualResult = mmxxvd3.processData(lstInputData);
+                    
+                    assert.equal(intActualResult, 17087);
+                });
+            });
+        }),
+        describe("#processData with sample data using alternate counting method", () => {
+            it("should return 3121910778619", () => {
         
-                    assert.equal(intActualResult, 3573);
+                let sampleData = [
+                    "987654321111111",
+                    "811111111111119",
+                    "234234234234278",
+                    "818181911112111"
+                ];
+                let joltage = mmxxvd3.processData(sampleData, 12, true);
+                assert.equal(joltage, 3121910778619);
+            });
+        }),
+        describe("#processData with actual data using alternate counting method", () => {
+            it("should return 169019504359949", async () => {
+        
+                await util.readData("2025/data/d3p1.txt").then((lstInputData) => {
+        
+                    var intActualResult = mmxxvd3.processData(lstInputData, 12);
+        
+                    assert.equal(intActualResult, 169019504359949);
                 });
             });
         });

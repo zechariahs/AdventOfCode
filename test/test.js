@@ -9,9 +9,9 @@ var assert = require ('assert');
 const {getUnitTestsFor2025D1, getUnitTestsFor2025D2, getUnitTestsFor2025D3} = require("../test/test_2025.js");
 
 describe("Unit Tests for 2025", () => {
-    getUnitTestsFor2025D3(),
+    getUnitTestsFor2025D1(), 
     getUnitTestsFor2025D2(),
-    getUnitTestsFor2025D1();
+    getUnitTestsFor2025D3();
 });
 
 
